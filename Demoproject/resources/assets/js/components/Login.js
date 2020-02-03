@@ -7,13 +7,13 @@ import  history from './history';
 
 class Login extends Component {
     
-     constructor(props){
+    constructor(props){
         super(props);
         this.state = {
             email : '',
             password: '',
         }
-     }
+    }
 
     onSubmit(e){
         e.preventDefault();
@@ -26,7 +26,6 @@ class Login extends Component {
         if(response.data != "") {
             this.setState({err: false});
             //console.log(response.data);
-            localStorage.setItem('islogin' , 'true' );
             this.props.history.push({pathname: '/Dashboard' , data: response.data }) ;
         }else{
             this.setState({err: true});

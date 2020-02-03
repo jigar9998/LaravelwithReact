@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Link , browserHistory  } from 'react-router';
+import { Link } from 'react-router-dom';
+import  history from './history';
 
  class EditPost extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ import { Link , browserHistory  } from 'react-router';
     }
 
   componentDidMount(){
-    axios.get(`http://127.0.0.1:8000/post/${this.props.params.id}/edit`)
+	  //console.log(this.props.match.params.id);
+    axios.get(`http://127.0.0.1:8000/post/${this.props.match.params.id}/edit`)
     .then(response => {
       	this.setState({ title: response.data.title, description: response.data.description , image: response.data.image });
     })
@@ -66,9 +68,9 @@ import { Link , browserHistory  } from 'react-router';
 			
         }
     }
-    let uri = 'http://127.0.0.1:8000/post/'+this.props.params.id;
+    let uri = 'http://127.0.0.1:8000/post/'+this.props.match.params.id;
     axios.post(uri, formData , config).then((response) => {
-        browserHistory.push('/post');
+        history.push('/post');
     });
   }
   render(){
@@ -88,28 +90,28 @@ import { Link , browserHistory  } from 'react-router';
 				<Link to="/post" className="btn btn-success">Return to Post</Link>
 			</div>
         </div>
-        <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-                <label>Post title</label>
-                <input type="text"
-                  className="form-control"
-                  value={this.state.title}
-                  onChange={this.handleChange1} />
-            </div>
-
-            <div className="form-group">
-                <label title="product_description">Post description</label>
-                <input type="text" className="form-control"
-                  value={this.state.description}
-                  onChange={this.handleChange2} />
-            </div>
-
-            <div className="form-group">
-                <label title="product_image">Post Image</label>
-				<input type="file" className="form-control"
-                  	onChange={this.handleChange3} />
-            </div>
-			<div className="preview-image" > {$imagePreview} </div>
+        <form onSubmit={this.handleSubmit} className="form-horizontal" encType="multipart/form-data" >
+		<div className="form-group ">
+				<label className="control-label col-sm-2">Post Title:</label>
+				<div className="col-sm-10">
+					<input type="text" value={this.state.title} className="form-control" placeholder="Enter Post Name" onChange={this.handleChange1}/>
+				</div>
+			</div>
+			<div className="form-group">
+				<label className="control-label col-sm-2"  >Post Desc:</label>
+				<div className="col-sm-10">
+					<textarea className="form-control" placeholder="Enter Post Desc" value={this.state.description} name="description" onChange={this.handleChange2}></textarea>
+				</div>
+			</div>
+		
+			<div className="form-group ">
+				<label className="control-label col-sm-2">Post Image:</label>
+				<div className="col-sm-10">
+					<input type="file" name="image" className="form-control" onChange={this.handleChange3} accept="image/jpeg,image/gif,image/png,application/pdf"/>
+					<div className="preview-image" >  {$imagePreview}	</div>
+					{/* <p className="error" > {this.state.error1} </p> */}
+				</div>
+			</div>
             <div className="form-group">
                 <button className="btn btn-primary">Update</button>
             </div>

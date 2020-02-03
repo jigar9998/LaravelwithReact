@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Link } from 'react-router';
+import { Link , Router } from 'react-router-dom';
 import TableRow from './TableRow';
 import Pagination from "react-js-pagination";
 

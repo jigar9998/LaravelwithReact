@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
+//import {browserHistory} from 'react-router';
+import  history from './history';
 
 
 class CreatePost extends Component {
@@ -83,7 +84,7 @@ this.setState({error1:err1 , error2:err2})
 //let uri = 'http://localhost:8000/post';
 if(this.state.posttitle != "" && this.state.postcontent != "" ){
 	axios.post('http://127.0.0.1:8000/post',formData,config ).then((response) => {
-		browserHistory.push('/post');
+		history.push('/post');
 	});
 }
 }
@@ -97,85 +98,58 @@ render() {
       $imagePreview = (<div className="previewText"></div>);
 	}
 
-	
-
 	return (
       <div className="container post_form" >
         <h1>Create An Post</h1>
+		<div className="row justify-content-center align-items-center h-100">
         <form onSubmit={this.handleSubmit} className="form-horizontal" encType="multipart/form-data" >
+			<div className="form-group ">
+				<label className="control-label col-sm-2">Post Title:</label>
+				<div className="col-sm-10">
+					<input type="text" className="form-control" placeholder="Enter Post Name" onChange={this.handleChange1} required autoFocus />
+					<p className="error" > {this.state.error1} </p>
+				</div>
+			</div>
+			<div className="form-group">
+				<label className="control-label col-sm-2"  >Post Desc:</label>
+				<div className="col-sm-10">
+					<textarea className="form-control" placeholder="Enter Post Desc" name="description" required onChange={this.handleChange2}></textarea>
+					<p className="error" > {this.state.error2} </p>
+				</div>
+			</div>
+		
+			<div className="form-group ">
+				<label className="control-label col-sm-2">Post Image:</label>
+				<div className="col-sm-10">
+					<input type="file" name="image" className="form-control" onChange={this.handleChange3} accept="image/jpeg,image/gif,image/png,application/pdf"/>
+					<div className="preview-image" >  {$imagePreview}	</div>
+					{/* <p className="error" > {this.state.error1} </p> */}
+				</div>
+			</div>
+			<div className="form-group ">
+				<label className="control-label col-sm-2"><span style={{ fontSize: '24px'}} >Post Category: </span> </label>
+				<div className="col-sm-10">
+					<ul className="category_check" > 
+						{
+							this.state.category.map((category, index) => (
+								<li key={category.id} > 
+									<label className="checkbox-container">
+										<input type="checkbox" name={category.id} onChange={this.handleChange4} /> <span className="checkmark" > </span>
+										{category.category_name} 
+									</label>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
 			
-				<div className="row">
-					<div className="col-md-12">
-						<div className="form-group ">
-							<div className="col-md-2">
-								
-							</div>
-							<div className="col-md-10">
-								<label>Post Title:</label>
-								<input type="text" className="form-control" onChange={this.handleChange1}/>
-								<p className="error" > {this.state.error1} </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-12">
-						<div className="form-group">
-							<div className="col-md-2">
-							</div>
-							<div className="col-md-10">
-								<label className="desc_label"  >Post Desc:</label>
-							{/* <input type="text" className="form-control col-md-6" onChange={this.handleChange2}/> */}
-								<textarea className="form-control" name="description" onChange={this.handleChange2}></textarea>
-								<p className="error" > {this.state.error2} </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-12">
-						<div className="form-group ">
-							<div className="col-md-2">
-								
-							</div>
-							<div className="col-md-10">
-								<label>Post Image:</label>
-								<input type="file" name="image" className="form-control" onChange={this.handleChange3} accept="image/jpeg,image/gif,image/png,application/pdf"/>
-								<div className="preview-image" >  {$imagePreview}	</div>
-								{/* <p className="error" > {this.state.error1} </p> */}
-							</div>
-						</div>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-12">
-						<div className="form-group ">
-							<div className="col-md-2">
-								
-							</div>
-							<div className="col-md-10">
-								<label>Post Category:</label>
-								<ul className="category_check" > 
-									{
-										this.state.category.map((category, index) => (
-											<li key={category.id} > 
-												<label className="checkbox-container">
-													<input type="checkbox" name={category.id} onChange={this.handleChange4} /> <span className="checkmark" > </span>
-													{category.category_name} 
-												</label>
-											</li>
-										))
-									}
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<br />
-				<div className="form-group">
-					<button className="btn btn-primary">Add Post</button>
-				</div>
+			<br />
+			<div className="form-group">
+				<button className="btn btn-primary">Add Post</button>
+			</div>
         </form>
+		</div>
   	</div>
       );
     }

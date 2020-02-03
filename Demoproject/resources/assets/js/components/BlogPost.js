@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import TableRow from './TableRow';
 //import Pagination from "react-js-pagination";
 
-class NewsPost extends Component {
+class BlogPost extends Component {
     constructor(props) {
        super(props);
 	   this.state = {title: '', posts: '' , activePage: 1 , pageRangeDisplayed: '' , totalpost: '' };
@@ -81,4 +81,4 @@ class NewsPost extends Component {
     );
   }
 }
-export default NewsPost;
+export default BlogPost;

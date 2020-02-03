@@ -50,7 +50,7 @@ class PostController extends Controller
             $post = new Post;
             $post->title = $request->title;
             $post->description = $request->desc;
-            $post->category_id = $request->category;
+            $post->cat_id = $request->category;
             if ($request->hasFile('image')) {
                 $uniqueid=uniqid();
                 $extension=$request->file('image')->getClientOriginalExtension();

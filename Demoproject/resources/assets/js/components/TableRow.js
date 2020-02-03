@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link } from 'react-router-dom';
+import  history from './history';
 // var Paginator = require('react-laravel-paginator');
 
 class TableRow extends Component {
@@ -11,7 +12,7 @@ class TableRow extends Component {
     event.preventDefault();
     let uri = `http://127.0.0.1:8000/post/${this.props.obj.id}`;
     axios.delete(uri);
-      	browserHistory.push('/');
+      	history.push('/');
   }
   render() {
     return (
@@ -29,14 +30,14 @@ class TableRow extends Component {
 				<img style={{width: 150}} src={'http://localhost/Demoproject/storage/app/'+this.props.obj.image} />
 			</td>
 			<td>
-				<Link to={"edit/"+this.props.obj.id} className="btn btn-primary">Edit</Link>
+				<Link to={{ pathname:"edit/"+this.props.obj.id}} className="btn btn-primary">Edit</Link>
 			</td>
 			<td>
-				<form onSubmit={this.handleSubmit}>
-					<input type="submit" value="Delete" className="btn btn-danger"/>
-				</form>
+			<form onSubmit={this.handleSubmit}>
+			<input type="submit" value="Delete" className="btn btn-danger"/>
+			</form>
 			</td>
-		</tr>
+			</tr>
     );
   }
 }

@@ -13,4 +13,11 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
+
+ import Example from "./components/Example";
+ import React, { Component } from 'react';
+
+ import { render } from 'react-dom';
+
+
+ render(<Example/> , document.getElementById('root') )

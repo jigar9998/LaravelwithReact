@@ -1,19 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component , createContext } from 'react'
+//const { Provider, Consumer } = createContext('user');
 //import Nav from './navbar'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import  history from './history';
+import Master from './Master';
 
 
 class Login extends Component {
     
-    constructor(props){
+     constructor(props){
         super(props);
         this.state = {
             email : '',
             password: '',
+            user:''
         }
-    }
+     }
 
     onSubmit(e){
         e.preventDefault();
@@ -24,8 +27,7 @@ class Login extends Component {
         })
         .then(response=> {
         if(response.data != "") {
-            this.setState({err: false});
-            //console.log(response.data);
+            this.setState({err: false , user: response.data});
             this.props.history.push({pathname: '/Dashboard' , data: response.data }) ;
         }else{
             this.setState({err: true});
@@ -50,7 +52,7 @@ class Login extends Component {
         let msg = (!error) ? 'Login Successful' : 'Wrong Credentials' ;
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;
 	    return (
-            <div >
+            <div>
                 <div className="container" style={{paddingTop:'150px'}} >
                     <div className="row">
                         <div className="">

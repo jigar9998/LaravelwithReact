@@ -1,9 +1,10 @@
-import React, { Component, useReducer } from 'react';
-import {  Router, Route , Link , Switch } from 'react-router-dom';
+import React, { Component , createContext } from 'react';
+import {  Router, Route , Link , Switch , withRouter } from 'react-router-dom';
 import  history from './history';
 
 import Home from './Home'
-//import Master from './Master';
+// import authenticationStore from './Master';
+// const { Provider } = createContext();
 import CreatePost from './CreatePost';
 import DisplayPost from './DisplayPost';
 import EditPost from './EditPost';
@@ -17,6 +18,13 @@ import { render } from 'react-dom';
 export default class Example extends Component {
     constructor(props){
         super(props);
+        this.state = {user: ''}
+    }
+    componentDidMount(){
+        this.setState({
+            user: this.state.location
+        })
+        console.log(this.state.user)
     }
     render() {
         return (
@@ -32,11 +40,13 @@ export default class Example extends Component {
                             <li><Link to="/news">News</Link></li>
                             <li><Link to="/blog">Blog</Link></li>
                             <li><Link to="/register">Register</Link></li>
-                        
+                            
+                            {/* {this.history.location.data.name} ? <li> {this.history.location.data.name} </li> : <li> </li> */}
                         </ul>
                     </nav>
                 </header>
                 <div className="container-fluid">
+                    
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/post" component={DisplayPost} />
@@ -50,8 +60,8 @@ export default class Example extends Component {
                     </Switch>
                 </div>
             </Router>
+            
         );
     }
 }
 
-render(<Example/> , document.getElementById('root') )

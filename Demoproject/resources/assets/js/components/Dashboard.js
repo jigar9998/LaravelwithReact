@@ -9,7 +9,8 @@ class Dashboard extends React.Component{
         super(props);
         this.state = {
             Name : this.props.location.data.name
-    }
+
+        }
         this.handleclick = this.handleclick.bind(this);
     }
 
@@ -27,6 +28,9 @@ class Dashboard extends React.Component{
     render(){
         let data = this.state.Name
         console.log(data);
+        // for (let i = 0; i < data.length; i++) {
+        //     console.log(data[i].name);
+        // }
         const mystyle = {  
             float: 'left',
             paddingLeft: '109px',

@@ -1,17 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component , createContext} from 'react';
 import { Link } from 'react-router';
+import Example from './Example';
+const { Provider, Consumer } = createContext();
 
-class Master extends Component {
-  render(){
-    return (
-     	 <div className="container-fluid">
-			
-			<div>
-				{this.props.children}
-			</div>
-			
-      	</div>
-    )
-  }
-}
+function Master(props) {  
+	return (  
+	  <div>  
+		{/* <Consumer>
+			{this.context}
+		</Consumer> */}
+	  </div>  
+	);  
+  }  
 export default Master;

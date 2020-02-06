@@ -28,7 +28,7 @@ class Register extends Component {
           .then(response=> {
               console.log(response);
            this.setState({err: false});
-           history.push("/") ;
+           history.push("/login") ;
           })
           .catch(error=> {
             this.refs.name.value="";
@@ -103,7 +103,7 @@ class Register extends Component {
                                 </div>
                             </div>
                         </div>
-                        <p className="logintext" > Already Register <Link to="/login">Login</Link> </p>
+                        
                     </div>
                 </div>
             </div>    

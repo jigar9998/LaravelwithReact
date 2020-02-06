@@ -2,6 +2,9 @@ import React from 'react';
 import SimpleImageSlider from "react-simple-image-slider";
 
 class Home extends React.Component{
+    constructor(props){
+        super(props);
+    }
     render(){
         const images = [
             { url: "../images/hero-banner.jpg" },

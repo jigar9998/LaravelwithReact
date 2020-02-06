@@ -1,10 +1,8 @@
-import React, { Component , createContext } from 'react';
+import React, { Component } from 'react';
 import {  Router, Route , Link , Switch , withRouter } from 'react-router-dom';
 import  history from './history';
 
 import Home from './Home'
-// import authenticationStore from './Master';
-// const { Provider } = createContext();
 import CreatePost from './CreatePost';
 import DisplayPost from './DisplayPost';
 import EditPost from './EditPost';
@@ -14,37 +12,60 @@ import Register from './Register';
 import Dashboard from './Dashboard';
 import Login from './Login';
 import { render } from 'react-dom';
+import Master from './Master';
+
 
 export default class Example extends Component {
     constructor(props){
         super(props);
-        this.state = {user: ''}
+        this.state = {
+            loggedInStatus: "NOT_LOGGED_IN",
+            user: {}
+        };
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
-    componentDidMount(){
+    handleLogin(data) {
         this.setState({
-            user: this.state.location
-        })
-        console.log(this.state.user)
+          loggedInStatus: "LOGGED_IN",
+          user: data
+        });
+    }
+    handleLogout() {
+        axios.post('http://127.0.0.1:8000/logout', {
+		})
+		.then(response=> {
+			this.setState({
+                loggedInStatus: "NOT_LOGGED_IN",
+                user: {}
+            });
+			history.push('/');
+		})
+		.catch(error=> {
+			console.log(error);
+		})
     }
     render() {
         return (
             <Router history={history} >
-                <header>
-                    <nav className="navbar navbar-default">
-                        <div className="navbar-header">
-                            <Link to="/" className="navbar-brand">CrudApp</Link>
-                        </div>          	
-                        <ul className="nav navbar-nav">
-                            <li><Link to="/post">Posts</Link></li>
-                            <li><Link to="/add-post">Create Post</Link></li>
-                            <li><Link to="/news">News</Link></li>
-                            <li><Link to="/blog">Blog</Link></li>
-                            <li><Link to="/register">Register</Link></li>
-                            
-                            {/* {this.history.location.data.name} ? <li> {this.history.location.data.name} </li> : <li> </li> */}
-                        </ul>
-                    </nav>
-                </header>
+                    <Route
+                        exact
+                        path={['/' , "/register" , '/login' , '/Dashboard' , '/post' , "/add-post" , "/edit/:id" , "/news" , "/blog" , "/Dashboard" ]}
+                        render={props => (
+                            <Master
+                            {...props} 
+                            loggedInStatus = {this.state.loggedInStatus} 
+                            user={this.state.user} 
+                            handleLogout={this.handleLogout}  
+                            />
+                        )}
+                    />
+                {/* <Master 
+                    {...props} 
+                    loggedInStatus = {this.state.loggedInStatus} 
+                    user={this.state.user} 
+                    handleLogout={this.handleLogout}  
+                /> */}
                 <div className="container-fluid">
                     
                     <Switch>
@@ -56,7 +77,16 @@ export default class Example extends Component {
                         <Route path="/blog" component={BlogPost} />
                         <Route path="/Dashboard" component={Dashboard} />
                         <Route path="/register" component={Register} />
-                        <Route path="/login" component={Login} />
+                        <Route
+                            exact
+                            path={"/login"}
+                            render={props => (
+                                <Login
+                                {...props}
+                                handleLogin={this.handleLogin}
+                                />
+                            )}
+                        />
                     </Switch>
                 </div>
             </Router>

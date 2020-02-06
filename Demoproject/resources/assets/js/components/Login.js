@@ -9,14 +9,14 @@ import Master from './Master';
 
 class Login extends Component {
     
-     constructor(props){
+    constructor(props){
         super(props);
         this.state = {
             email : '',
             password: '',
             user:''
         }
-     }
+    }
 
     onSubmit(e){
         e.preventDefault();
@@ -28,7 +28,9 @@ class Login extends Component {
         .then(response=> {
         if(response.data != "") {
             this.setState({err: false , user: response.data});
+            this.props.handleLogin(response.data);
             this.props.history.push({pathname: '/Dashboard' , data: response.data }) ;
+            
         }else{
             this.setState({err: true});
         }
@@ -45,9 +47,7 @@ class Login extends Component {
         const {name, value} = e.target;
         this.setState({[name]: value});
     }
-
 	render() {
-        
         let error = this.state.err ;
         let msg = (!error) ? 'Login Successful' : 'Wrong Credentials' ;
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;

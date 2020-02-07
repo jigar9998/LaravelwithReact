@@ -99,6 +99,7 @@ class PostController extends Controller
 
         $post->title = $request->get('title');
         $post->description = $request->get('desc');
+        $post->cat_id = $request->get('category');
         print_r($request->file('image'));   
         if ($request->hasFile('image')) {
             $dir = 'uploads/';
@@ -144,5 +145,15 @@ class PostController extends Controller
         $blog_post = Category::find(2)->post;
 
         return response()->json($blog_post);
+    }
+    public function addcategory(Request $request){
+        $this-> validate($request, [
+            'category' => 'required|string|max:255',
+        ]);
+
+        $data = Category::create([
+            'category_name' => $request['category']
+        ]);
+        return response()->json('Successfully added');
     }
 }

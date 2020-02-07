@@ -21,6 +21,7 @@ Route::resource('post', 'PostController');
 Route::post('/register', 'RegisterController@register' );
 Route::post('/login', 'RegisterController@login' );
 Route::post('/logout', 'RegisterController@logout' );
+Route::post('/category', 'PostController@addcategory' );
 
 
 

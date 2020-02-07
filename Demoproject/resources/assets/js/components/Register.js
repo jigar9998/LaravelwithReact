@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-//import Nav from './navbar'
 import axios from 'axios'
 import  history from './history';
 
@@ -49,7 +48,7 @@ class Register extends Component {
         let msg = (!error) ? 'Registered Successfully' : 'Oops! , Something went wrong.' ;
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger' ;
         return (   
-             <div>   
+            <div>   
                 <div className="container" style={{paddingTop:'150px'}} >
                     <div className="row">
                         <div className=" ">
@@ -103,7 +102,6 @@ class Register extends Component {
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>    

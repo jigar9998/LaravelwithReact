@@ -5532,7 +5532,7 @@ tbody.collapse.in {
 
 @media (min-width: 768px) {
   .navbar-nav {
-    float: left;
+    /* float: left; */
     margin: 0;
   }
 
@@ -8407,7 +8407,7 @@ button.close {
 	background-repeat: no-repeat;
 	background-position: center;
   background-size: cover;
-  background-image: url('../images/hero-banner.jpg');
+  /* background-image: url('../images/hero-banner.jpg'); */
     /* height: 500px;
     z-index: -1; */
     height: 500px;
@@ -8541,10 +8541,11 @@ button.close {
 }
 .logout_btn{
     float: left;
-    margin: 12px 0 0 27px;
+    margin: 16px 0 0 27px;
 }
 .login_user{
     font-size: 35px;
     padding-left: 90px;
+    padding-top: 5px;
     font-weight: 500;
 }

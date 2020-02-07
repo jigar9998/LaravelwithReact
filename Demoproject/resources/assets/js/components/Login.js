@@ -55,7 +55,7 @@ class Login extends Component {
             <div>
                 <div className="container" style={{paddingTop:'150px'}} >
                     <div className="row">
-                        <div className="">
+                        <div className="login_card">
                             <div className="panel panel-default">
                                 <div className="panel-heading">Login</div>
                                 <div className="panel-body">   
@@ -81,9 +81,9 @@ class Login extends Component {
 
                                         <div className="form-group">
                                             <div className="col-md-6 col-md-offset-4">
-                                                <div className="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="remember" /> Remember Me
+                                                <div className="category_check">
+                                                    <label className="checkbox-container" >
+                                                    <input type="checkbox" /> <span className="checkmark" > </span> Remember Me
                                                     </label>
                                                 </div>
                                             </div>
@@ -104,8 +104,8 @@ class Login extends Component {
                 </div>
             </div>
            
-	);
-}
+	    );
+    }
 }
 
 export default Login;

@@ -7,14 +7,7 @@ class Dashboard extends React.Component{
     
     constructor(props){
         super(props);
-        // this.state = {
-        //     Name : this.props.location.data.name
-
-        // }
     }
-
-    
-
     render(){
         const mystyle = {  
             float: 'left',
@@ -30,8 +23,6 @@ class Dashboard extends React.Component{
                 <div className="col-md-12 wrapper ">
                     <div className="user_details">
                         <span style={mystyle} > Dashboard </span>
-                        {/* <span>Current User :- </span>  {this.state.Name} <br />
-                        <button type="submit" className="btn btn-primary" onClick={this.handleclick} > LogOut </button>  */}
                     </div>
                 </div>
             </div>

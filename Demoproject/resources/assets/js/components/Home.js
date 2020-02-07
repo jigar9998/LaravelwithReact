@@ -8,19 +8,17 @@ class Home extends React.Component{
     render(){
         const images = [
             { url: "../images/hero-banner.jpg" },
-            {url: "../images/insight-banner-image.jpg"},
-            {url: "../images/our-team-banner-image copy.jpg"}
+            {url: "../images/gcrud-ipad-air.png"}
         ];
         return(
             <div>
                 <section className="hero-banner-block">	
-                <SimpleImageSlider
-                    width={1400}
-                    height={504}
-                    images={images}
-                    className="Silder"
-                />
-                    
+                    <SimpleImageSlider
+                        width={1400}
+                        height={504}
+                        images={images}
+                        className="Silder"
+                    />
                 </section>
                 
                 <div className="container">

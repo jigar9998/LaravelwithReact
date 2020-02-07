@@ -1,5 +1,6 @@
-import React, {Component , createContext} from 'react';
+import React, {Component } from 'react';
 import { Link , withRouter } from 'react-router-dom';
+
 
 class Master extends Component {
 	constructor(props){
@@ -28,12 +29,13 @@ class Master extends Component {
 						<Link to="/" className="navbar-brand">CrudApp</Link>
 					</div>          	
 					<ul className="nav navbar-nav">
-						{isLoggedIn == 'LOGGED_IN' ? <li><Link to="/post">Posts</Link></li> : <li> </li> }
-						{isLoggedIn == 'LOGGED_IN' ? <li><Link to="/add-post">Create Post</Link></li> : <li> </li> }
-						{isLoggedIn == 'LOGGED_IN' ? <li><Link to="/news">News</Link></li> : <li> </li> }
-						{isLoggedIn == 'LOGGED_IN' ? <li><Link to="/blog">Blog</Link></li> : <li> </li> }
-						{isLoggedIn == 'NOT_LOGGED_IN' ? <li><Link to="/login">Login</Link></li>  : <li> </li> }
-						{isLoggedIn == 'NOT_LOGGED_IN' ? <li><Link to="/register">Register</Link></li>  : <li> </li> }
+						{isLoggedIn == 'LOGGED_IN' ? <li><Link to="/post" title="Posts" >Posts</Link></li> : <li> </li> }
+						{isLoggedIn == 'LOGGED_IN' ? <li><Link to="/add-post" title="Add-Post" >Create Post</Link></li> : <li> </li> }
+						{isLoggedIn == 'LOGGED_IN' ? <li><Link to="/news" title="News" >News</Link></li> : <li> </li> }
+						{isLoggedIn == 'LOGGED_IN' ? <li><Link to="/blog" title="Blog" >Blog</Link></li> : <li> </li> }
+						{isLoggedIn == 'LOGGED_IN' ? <li><Link to="/addcategory" title="Addcategory" >Add Category</Link></li> : <li> </li> }
+						{isLoggedIn == 'NOT_LOGGED_IN' ? <li><Link to="/login" title="Login" >Login</Link></li>  : <li> </li> }
+						{isLoggedIn == 'NOT_LOGGED_IN' ? <li><Link to="/register" title="Register" >Register</Link></li>  : <li> </li> }
 						{isLoggedIn == 'LOGGED_IN' ? <li className="login_user" > Current User :- {this.props.user.name} </li>  : <li> </li> }
 						{isLoggedIn == 'LOGGED_IN' ? <button type="submit" className="btn btn-primary logout_btn " onClick={this.props.handleLogout} > LogOut </button>  : <li> </li> }
 						

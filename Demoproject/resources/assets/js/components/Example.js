@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {  Router, Route , Link , Switch , withRouter } from 'react-router-dom';
 import  history from './history';
-
 import Home from './Home'
 import CreatePost from './CreatePost';
 import DisplayPost from './DisplayPost';
@@ -11,6 +10,7 @@ import BlogPost from './BlogPost';
 import Register from './Register';
 import Dashboard from './Dashboard';
 import Login from './Login';
+import AddCategory from './AddCategory'
 import { render } from 'react-dom';
 import Master from './Master';
 
@@ -50,7 +50,7 @@ export default class Example extends Component {
             <Router history={history} >
                     <Route
                         exact
-                        path={['/' , "/register" , '/login' , '/Dashboard' , '/post' , "/add-post" , "/edit/:id" , "/news" , "/blog" , "/Dashboard" ]}
+                        path={['/' , "/register" , '/login' , '/Dashboard' , '/post' , "/add-post" , "/edit/:id" , "/news" , "/blog" , "/Dashboard" , '/AddCategory' ]}
                         render={props => (
                             <Master
                             {...props} 
@@ -77,6 +77,7 @@ export default class Example extends Component {
                         <Route path="/blog" component={BlogPost} />
                         <Route path="/Dashboard" component={Dashboard} />
                         <Route path="/register" component={Register} />
+                        <Route path="/addcategory" component={AddCategory} />
                         <Route
                             exact
                             path={"/login"}

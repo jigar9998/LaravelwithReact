@@ -12,7 +12,7 @@ class TableRow extends Component {
     event.preventDefault();
     let uri = `http://127.0.0.1:8000/post/${this.props.obj.id}`;
     axios.delete(uri);
-      	history.push('/');
+      	history.push('/post');
   }
   render() {
     return (

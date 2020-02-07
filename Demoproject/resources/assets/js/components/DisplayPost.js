@@ -12,9 +12,9 @@ class DisplayPost extends Component {
 	   this.handlePageChange = this.handlePageChange.bind(this);
      }
     componentDidMount(){
-        axios.get('http://127.0.0.1:8000/post')
+        axios.get('/post')
         .then(response => {
-			console.log(response.data);
+			//console.log(response.data);
 			this.setState({ posts: response.data.data });
 			this.handlePageChange(response.data.current_page);
         })

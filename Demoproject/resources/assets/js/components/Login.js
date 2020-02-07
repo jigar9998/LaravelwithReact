@@ -14,16 +14,18 @@ class Login extends Component {
         this.state = {
             email : '',
             password: '',
+            rememberme: '',
             user:''
         }
     }
 
     onSubmit(e){
         e.preventDefault();
-        const {email , password} = this.state ;
+        const {email , password , rememberme} = this.state ;
         axios.post('http://127.0.0.1:8000/login', {
             email, 
-            password
+            password,
+            rememberme
         })
         .then(response=> {
         if(response.data != "") {
@@ -67,7 +69,7 @@ class Login extends Component {
                                             <label htmlFor="email" className="col-md-4 control-label">E-Mail Address</label>
 
                                             <div className="col-md-6">
-                                                <input id="email" type="email" ref="email" className="form-control" name="email"  onChange={this.onChange.bind(this)} required />
+                                                <input id="email" type="email" ref="email" className="form-control" name="email" autoComplete="off"  onChange={this.onChange.bind(this)} required />
                                             </div>
                                         </div>
 
@@ -75,7 +77,7 @@ class Login extends Component {
                                             <label htmlFor="password" className="col-md-4 control-label">Password</label>
 
                                             <div className="col-md-6">
-                                                <input id="password" type="password" ref="password" className="form-control" name="password"  onChange={this.onChange.bind(this)}  required />
+                                                <input id="password" type="password" ref="password" className="form-control" autoComplete="off" name="password"  onChange={this.onChange.bind(this)}  required />
                                             </div>
                                         </div>
 
@@ -83,7 +85,7 @@ class Login extends Component {
                                             <div className="col-md-6 col-md-offset-4">
                                                 <div className="category_check">
                                                     <label className="checkbox-container" >
-                                                    <input type="checkbox" /> <span className="checkmark" > </span> Remember Me
+                                                    <input type="checkbox" name="rememberme" onChange={this.onChange.bind(this)}  /> <span className="checkmark" > </span> Remember Me
                                                     </label>
                                                 </div>
                                             </div>

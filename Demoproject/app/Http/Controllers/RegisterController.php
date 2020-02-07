@@ -36,7 +36,8 @@ class RegisterController extends Controller
 
 
     protected function login(Request $request){
-        $user = Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+        $remember = $request->get('rememberme') ? true : false;
+        $user = Auth::attempt(['email' => $request->email, 'password' => $request->password] , $remember);
         if ($user) {
             $user_data = User::all()->where('email', $request->email );
             // Authentication passed...
@@ -44,7 +45,7 @@ class RegisterController extends Controller
         }else{
             
         }
-    }
+    }   
     protected function logout(Request $request) {
         Auth::logout();
         

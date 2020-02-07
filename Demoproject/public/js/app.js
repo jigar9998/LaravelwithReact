@@ -3436,7 +3436,6 @@ var Master = function (_Component) {
 		value: function handlelogoutclick() {
 			var _this2 = this;
 
-			console.log(this.props.handleLogout());
 			axios.post('http://127.0.0.1:8000/logout', {}).then(function (response) {
 				_this2.props.handleLogout();
 				history.push('/');
@@ -35178,7 +35177,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
 var Example = function (_Component) {
     _inherits(Example, _Component);
 
@@ -41309,6 +41307,7 @@ var Login = function (_Component) {
         _this.state = {
             email: '',
             password: '',
+            rememberme: '',
             user: ''
         };
         return _this;
@@ -41322,11 +41321,13 @@ var Login = function (_Component) {
             e.preventDefault();
             var _state = this.state,
                 email = _state.email,
-                password = _state.password;
+                password = _state.password,
+                rememberme = _state.rememberme;
 
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('http://127.0.0.1:8000/login', {
                 email: email,
-                password: password
+                password: password,
+                rememberme: rememberme
             }).then(function (response) {
                 if (response.data != "") {
                     _this2.setState({ err: false, user: response.data });
@@ -41402,7 +41403,7 @@ var Login = function (_Component) {
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 'div',
                                                 { className: 'col-md-6' },
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'email', type: 'email', ref: 'email', className: 'form-control', name: 'email', onChange: this.onChange.bind(this), required: true })
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'email', type: 'email', ref: 'email', className: 'form-control', name: 'email', autoComplete: 'off', onChange: this.onChange.bind(this), required: true })
                                             )
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -41416,7 +41417,7 @@ var Login = function (_Component) {
                                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                 'div',
                                                 { className: 'col-md-6' },
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'password', type: 'password', ref: 'password', className: 'form-control', name: 'password', onChange: this.onChange.bind(this), required: true })
+                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'password', type: 'password', ref: 'password', className: 'form-control', autoComplete: 'off', name: 'password', onChange: this.onChange.bind(this), required: true })
                                             )
                                         ),
                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -41431,7 +41432,7 @@ var Login = function (_Component) {
                                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                         'label',
                                                         { className: 'checkbox-container' },
-                                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox' }),
+                                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'checkbox', name: 'rememberme', onChange: this.onChange.bind(this) }),
                                                         ' ',
                                                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                                             'span',

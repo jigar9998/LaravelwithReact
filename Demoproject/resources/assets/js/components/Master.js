@@ -8,7 +8,6 @@ class Master extends Component {
 		// this.handlelogoutclick = this.handlelogoutclick.bind();
 	}
 	handlelogoutclick(){
-		console.log(this.props.handleLogout());
 		axios.post('http://127.0.0.1:8000/logout', {
 		})
 		.then(response=> {
